@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Sacramento, Lora, Jost } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 
 const cormorant = Cormorant_Garamond({
@@ -33,9 +35,18 @@ const jost = Jost({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://yu-chieh-chin.vercel.app"),
   title: "Yu–Chieh Chin",
   description:
     "Marketing strategist with a passion for brand storytelling, consumer insight, and fashion-forward communication.",
+  openGraph: {
+    title: "Yu–Chieh Chin",
+    description:
+      "Marketing strategist with a passion for brand storytelling, consumer insight, and fashion-forward communication.",
+    siteName: "Yu–Chieh Chin",
+    locale: "en_GB",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
@@ -49,6 +60,8 @@ export default function RootLayout({
         className={`${cormorant.variable} ${sacramento.variable} ${lora.variable} ${jost.variable}`}
       >
         {children}
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
